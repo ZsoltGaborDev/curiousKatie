@@ -28,61 +28,70 @@ class MatchingAlgo {
     struct Person {
         let name: String
         let characteristics: [Characteristics: Any]
-        let interest: [Interest: Any]
+        let interest: [Interest]
+        
     }
     
     
     var people = [Person]()
     
     init() {
-        people.append(Person(name: "Michael", characteristics: [.age: 22, .gender: "M", .civilStatus: "single", .hometown: "San Francisco"], interest: [Interest.Climbing: "only on summer time", Interest.Motocycle: "if weather permit it " ]  ))
-        people.append(Person(name: "Laura", characteristics: [.age: 25, .gender: "F", .civilStatus: "single", .hometown: "Rome"], interest: [.Cooking: "specially italian food", .Books: "of any kind, but SF prefered.", .Movie: "action, documnetary and comedy prefered"]  ))
-        people.append(Person(name: "Mark", characteristics: [.age: 37, .gender: "M", .civilStatus: "married", .hometown: "Sydney"], interest: [.Photo: "artistical photos during traveling ", .Travel: "doing photography courses to the participants ", .Motocycle: "only in free time "]  ))
-        people.append(Person(name: "Janice", characteristics: [.age: 18, .gender: "F", .civilStatus: "single", .hometown: "New York"], interest: [.Fashion: "doing for hobby and it's my job too.", .Movie: "is the perfect method for relax", .Photo: "only in free time", .Running: "every early morning.", .Cooking: "interested for exotic food."]  ))
-        people.append(Person(name: "Jessica", characteristics: [.age: 30, .gender: "F", .civilStatus: "married", .hometown: "Dublin"], interest: [.Movie: " loving films registered by James Cameron.", .Running: "only in good company", .Climbing: "as weekend - relax with firends", .Motocycle: "part of a healty life.", .Travel: "becuase it makes people growing"]  ))
-        people.append(Person(name: "Monique", characteristics: [.age: 28, .gender: "F", .civilStatus: "single", .hometown: "Paris"], interest: [.Fashion: "loving to be cool", .Cooking: "becuase we are what we eat", .Movie: "when it's possible"]  ))
-        people.append(Person(name: "Mila", characteristics: [.age: 33, .gender: "F", .civilStatus: "divorced", .hometown: "Prague"], interest: [.Climbing: "to clear the mind after a stressful week", .Movie: "only in good company", .Programming: "it's for work and pleasure", .Photo: "makes part of work", .Travel: "doing group leader for teenagers"]  ))
-        people.append(Person(name: "Gregory", characteristics: [.age: 41, .gender: "M", .civilStatus: "divorced", .hometown: "London"], interest: [.Programming: " as a freelancer", .Soccer: "on weekend with friends", .Swimming: "like lifeguard in the summer season", .Photo: "as hobby"]  ))
-        people.append(Person(name: "Jack", characteristics: [.age: 36, .gender: "M", .civilStatus: "married", .hometown: "Glasgow"], interest: [.Motocycle: "loving the speed and adrenaline.", .Soccer: "when weather permit it.", .Books: "as a big passion.", .Cooking: "indian, mexican and japoneese food."]  ))
-        people.append(Person(name: "Joe", characteristics: [.age: 24, .gender: "M", .civilStatus: "single", .hometown: "Liverpool"], interest: [.Photo: "because art is food for soul.", .Programming: "in some startup projects.", .Gaming: "day and night."] ))
-        people.append(Person(name: "Denise", characteristics: [.age: 15, .gender: "F", .civilStatus: "single", .hometown: "Milan"], interest: [.Motocycle: "only in summer time.", .Travel: "everywhere, anytime when possible. ", .Gaming: "only strategical games."]  ))
-    
+        people.append(Person(name: "Michael", characteristics: [.age: 22, .gender: "M", .civilStatus: "single", .hometown: "San Francisco"], interest: [Interest.Climbing, Interest.Motocycle]  ))
+        people.append(Person(name: "Laura", characteristics: [.age: 25, .gender: "F", .civilStatus: "single", .hometown: "Rome"], interest: [.Cooking, .Books, .Movie]  ))
+        people.append(Person(name: "Mark", characteristics: [.age: 37, .gender: "M", .civilStatus: "married", .hometown: "Sydney"], interest: [.Photo, .Travel, .Motocycle]  ))
+        people.append(Person(name: "Janice", characteristics: [.age: 18, .gender: "F", .civilStatus: "single", .hometown: "New York"], interest: [.Fashion, .Movie, .Photo, .Running, .Cooking]  ))
+        people.append(Person(name: "Jessica", characteristics: [.age: 30, .gender: "F", .civilStatus: "married", .hometown: "Dublin"], interest: [.Movie, .Running, .Climbing, .Motocycle, .Travel]  ))
+        people.append(Person(name: "Monique", characteristics: [.age: 28, .gender: "F", .civilStatus: "single", .hometown: "Paris"], interest: [.Fashion, .Cooking, .Movie]  ))
+        people.append(Person(name: "Mila", characteristics: [.age: 33, .gender: "F", .civilStatus: "divorced", .hometown: "Prague"], interest: [.Climbing, .Movie, .Programming, .Photo, .Travel]  ))
+        people.append(Person(name: "Gregory", characteristics: [.age: 41, .gender: "M", .civilStatus: "divorced", .hometown: "London"], interest: [.Programming, .Soccer, .Swimming, .Photo]  ))
+        people.append(Person(name: "Jack", characteristics: [.age: 36, .gender: "M", .civilStatus: "married", .hometown: "Glasgow"], interest: [.Motocycle, .Soccer, .Books, .Cooking]  ))
+        people.append(Person(name: "Joe", characteristics: [.age: 24, .gender: "M", .civilStatus: "single", .hometown: "Liverpool"], interest: [.Photo, .Programming, .Gaming] ))
+        people.append(Person(name: "Denise", characteristics: [.age: 15, .gender: "F", .civilStatus: "single", .hometown: "Milan"], interest: [.Motocycle, .Travel, .Gaming]  ))
     }
     
     func introduction() {
         
+        /// Removed the /n from the end of your senetence to remove unneeded spacing in your logs
+        
         for i in people {
-            print("Hello, my name is \(i.name), i'm \(i.characteristics[.age] ?? 0) years old, \(i.characteristics[.civilStatus] ?? 0), living in \(i.characteristics[.hometown] ?? 0).\n ")
+            print("Hello, my name is \(i.name), i'm \(i.characteristics[.age] ?? 0) years old, \(i.characteristics[.civilStatus] ?? 0), living in \(i.characteristics[.hometown] ?? 0).")
         }
         
     }
     
     func announceInterest() {
         let list = people.shuffled()
-        
         for i in list {
-            print("Katie: \(i.name), could you please share us your interests?")
-                
+            var string = "Hello again, my name is \(i.name) and my intrest are "
             for j in i.interest {
-                print("\(i.name): I'm interested for \(j.key).")
-                
+                if i.interest.first! == j {
+                    string.append(j.rawValue)
+                } else {
+                    string.append(", \(j.rawValue)")
+                }
             }
-            print("")
+            string.append(".")
+            print(string)
         }
-    
+        
     }
     
-    func match (interest: Interest) {
-        let interestToCheck = interest.rawValue
-        print("The persons interested for \(interestToCheck) are: ")
+    func match () {
+        var peopleToMatch = people
         
-        for i in people {
-            for j in i.interest {
-                if j.key.rawValue == interestToCheck {
-                    print("\(i.name), \(j.value )")
+        while peopleToMatch.count >= 1 {
+        
+            for peopleIndex in 0 ..< peopleToMatch.count {
+                let secondPerson = peopleToMatch[peopleIndex]
+                let firstPerson = peopleToMatch[0]
+                let matchedInterest = firstPerson.interest.filter(secondPerson.interest.contains)
+                if (matchedInterest.count >= 3) && (firstPerson.name != secondPerson.name) {
+                print("\(firstPerson.name) is matching with \(secondPerson.name) with \(matchedInterest.count) common interests.")
                 }
-
             }
+            
+        peopleToMatch.removeFirst()
+        
         }
         
     }
@@ -90,6 +99,9 @@ class MatchingAlgo {
 }
 
 MatchingAlgo().introduction()
+print("--")
 MatchingAlgo().announceInterest()
-MatchingAlgo().match(interest: .Cooking)
+print("--")
+MatchingAlgo().match()
+
 
