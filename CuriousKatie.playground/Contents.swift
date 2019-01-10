@@ -77,20 +77,21 @@ class MatchingAlgo {
         }
     }
   
-    // pairing and log the pairing results 
-    func match () {
+    // pairing and logging the pairing results ( paired everybody with everybody crossing all their interests one by one)
+    func match() {
         var peopleToMatch = people
         
-        while peopleToMatch.count >= 2 {
-        
-                let firstPerson = peopleToMatch.first
-                let secondPerson = peopleToMatch[peopleToMatch.index(after: 0)]
-                let matchedInterest = firstPerson!.interest.filter(secondPerson.interest.contains)
-                if (matchedInterest.count >= 2) && (firstPerson!.name != secondPerson.name) {
-                    print("\(firstPerson!.name) is matching with \(secondPerson.name) with \(matchedInterest.count) common interests.")
-                    peopleToMatch.removeFirst()
-                    peopleToMatch.removeFirst()
+        while peopleToMatch.count >= 1 {
+            for peopleIndex in 0 ..< peopleToMatch.count {
+                let secondPerson = peopleToMatch[peopleIndex]
+                let firstPerson = peopleToMatch[0]
+                let matchedInterest = firstPerson.interest.filter(secondPerson.interest.contains)
+                
+                if (matchedInterest.count >= 2) && (firstPerson.name != secondPerson.name) {
+                    print("\(firstPerson.name) is matching with \(secondPerson.name) with \(matchedInterest.count) common interests.")
                 }
+            }
+            peopleToMatch.removeFirst()
         }
     }
 }
