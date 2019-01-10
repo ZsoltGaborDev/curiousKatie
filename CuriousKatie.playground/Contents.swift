@@ -77,7 +77,7 @@ class MatchingAlgo {
         }
     }
   
-    // pairing and log the pairing results ( after the pairing both persons paired are removed, so the 11th person remain alone and hasn't the possibility to be paired )
+    // pairing and log the pairing results 
     func match () {
         var peopleToMatch = people
         
